@@ -1,0 +1,22 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Ejecutar API (spring-boot:run)",
+      "type": "shell",
+      "command": "./mvnw spring-boot:run",
+      "windows": { "command": ".\\mvnw.cmd spring-boot:run" },
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "Compilar (package)",
+      "type": "shell",
+      "command": "./mvnw clean package -DskipTests",
+      "windows": { "command": ".\\mvnw.cmd clean package -DskipTests" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    }
+  ]
+}

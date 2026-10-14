@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Lab09Application",
+      "request": "launch",
+      "mainClass": "pe.edu.tecsup.lab09.Lab09Application",
+      "projectName": "lab09"
+    }
+  ]
+}

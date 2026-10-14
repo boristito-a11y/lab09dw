@@ -10,11 +10,24 @@ y reciben recomendaciones. El ADMIN gestiona el catálogo.
 
 ## Paso a paso del laboratorio
 
+### Paso 0 – Preparar VS Code
+1. Instala **JDK 17 o superior** (por ejemplo Eclipse Temurin 17/21). Verifica en una terminal: `java -version`.
+2. Instala VS Code y, al abrir esta carpeta, acepta las **extensiones recomendadas** (o instálalas a mano):
+   - **Extension Pack for Java** (`vscjava.vscode-java-pack`)
+   - **Spring Boot Extension Pack** (`vmware.vscode-boot-dev-pack`)
+3. **No necesitas instalar Maven**: el proyecto trae el Maven Wrapper (`mvnw` / `mvnw.cmd`), que lo descarga solo la primera vez.
+4. Abre la carpeta: **File → Open Folder…** → selecciona `lab09dw`. Espera a que abajo a la derecha termine *"Java: Ready"* (la primera vez descarga las dependencias, tarda unos minutos).
+
 ### Paso 1 – Crear el proyecto (sección 3)
-1. En https://start.spring.io elige **Maven**, **Java 17**, **Spring Boot 3.5.x**, group `pe.edu.tecsup`, artifact `lab09`.
-2. Dependencias: Spring Web, Spring Data JPA, H2 Database, Validation, Spring Security.
-3. Agrega las 3 dependencias de JJWT al `pom.xml` (ya están en este repo).
-4. Copia el `application.properties` (en `src/main/resources`).
+1. En VS Code: `Ctrl+Shift+P` → **Spring Initializr: Create a Maven Project…**
+   - Spring Boot **3.5.x** → **Java** → group `pe.edu.tecsup` → artifact `lab09` → **Jar** → Java **17**.
+   - Dependencias: Spring Web, Spring Data JPA, H2 Database, Validation, Spring Security.
+   - (Alternativa: generarlo en https://start.spring.io y abrir la carpeta descomprimida.)
+2. Agrega las 3 dependencias de JJWT al `pom.xml` (ya están en este repo). Al guardar, VS Code pregunta si sincronizar el proyecto: elige **Always/Yes**.
+3. Copia el `application.properties` (en `src/main/resources`).
+
+> En VS Code los `import` se agregan con **`Shift+Alt+O`** (Organize Imports) o con el foco 💡 / **`Ctrl+.`** sobre la clase subrayada en rojo. Este repo ya activa *organizar imports al guardar* en `.vscode/settings.json`.
+> Para crear clases: clic derecho en el paquete del **Explorer** → **New Java File → Class/Record/Enum/Interface**.
 
 ### Paso 2 – Escribir las clases en orden (sección 5)
 | Orden | Paquete | Clases |
@@ -30,11 +43,28 @@ y reciben recomendaciones. El ADMIN gestiona el catálogo.
 | 9 | Seeder | `DataInitializer` (admin/admin123 + 7 productos) |
 | 10 | **Recomendación (tu parte)** | `RecomendacionResponse`, `RecomendacionService`, `RecomendacionController` |
 
-### Paso 3 – Ejecutar
-```bash
-mvn spring-boot:run
-```
-(o Run sobre `Lab09Application` en IntelliJ).
+### Paso 3 – Ejecutar en VS Code
+Cualquiera de estas opciones:
+- **F5** (o **Run and Debug → "Lab09Application"**, configurado en `.vscode/launch.json`).
+- Abre `Lab09Application.java` y haz clic en **Run** encima del método `main`.
+- Panel **Spring Boot Dashboard** (ícono de la barra lateral) → ▶ junto a `lab09`.
+- Terminal (`` Ctrl+` ``):
+  ```bash
+  ./mvnw spring-boot:run        # Linux / macOS / Git Bash
+  .\mvnw.cmd spring-boot:run    # Windows PowerShell o CMD
+  ```
+  o `Ctrl+Shift+P` → **Tasks: Run Task → Ejecutar API (spring-boot:run)**.
+
+Sabrás que arrancó cuando la consola muestre `Started Lab09Application` y el puerto `8080`.
+Para detenerla: **Shift+F5** (o `Ctrl+C` en la terminal).
+
+**Problemas comunes**
+| Síntoma | Solución |
+|---|---|
+| Clases en rojo / "cannot be resolved" | `Ctrl+Shift+P` → **Java: Clean Java Language Server Workspace** → Reload |
+| `Port 8080 was already in use` | Detén la ejecución anterior (Shift+F5) o cierra la otra terminal |
+| `JAVA_HOME` no definido / versión incorrecta | Instala JDK 17+ y en `Ctrl+Shift+P` → **Java: Configure Java Runtime** selecciónalo |
+| `mvnw: Permission denied` (Linux/macOS) | `chmod +x mvnw` |
 
 ### Paso 4 – Checkpoint en la consola H2
 1. Abre http://localhost:8080/h2-console
