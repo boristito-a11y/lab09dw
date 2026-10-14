@@ -1017,12 +1017,7 @@
           "name": "10 Recomendaciones de admin - popularidad (200)",
           "request": {
             "method": "GET",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/recomendaciones/me",
               "host": [
@@ -1034,21 +1029,12 @@
                 "me"
               ]
             },
-            "body": {
-              "mode": "raw",
-              "raw": "\"tokenAdmin\"",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{token}}",
+                  "value": "{{tokenAdmin}}",
                   "type": "string"
                 }
               ]
@@ -1141,12 +1127,7 @@
           "name": "09 admin borra calificación de luis (204)",
           "request": {
             "method": "DELETE",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/api/calificaciones/6",
               "host": [
@@ -1158,21 +1139,12 @@
                 "6"
               ]
             },
-            "body": {
-              "mode": "raw",
-              "raw": "\"tokenAdmin\"",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
             "auth": {
               "type": "bearer",
               "bearer": [
                 {
                   "key": "token",
-                  "value": "{{token}}",
+                  "value": "{{tokenAdmin}}",
                   "type": "string"
                 }
               ]
